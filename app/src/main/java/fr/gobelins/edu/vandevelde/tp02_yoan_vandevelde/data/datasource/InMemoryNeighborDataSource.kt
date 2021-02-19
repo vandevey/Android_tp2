@@ -1,31 +1,33 @@
 package fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.data.datasource
 
+import android.os.Debug
+import android.util.Log
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.models.Neighbor
 
 class InMemoryNeighborDataSource : NeighborDataSource{
 
-    override val neighbors: List<Neighbor>
+    override val neighbors: MutableList<Neighbor>
         get() = InMemory_NeighborS
 
     override fun deleteNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
+        println("delete")
+        InMemory_NeighborS.remove(neighbor)
     }
 
     override fun createNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
+
     }
 
     override fun updateFavoriteStatus(neighbor: Neighbor) {
-        TODO("Not yet implemented")
+
     }
 
     override fun updateNeighbor(neighbor: Neighbor) {
-        TODO("Not yet implemented")
+
     }
 
-
     // Liste initial des voisins
-    private val InMemory_NeighborS: List<Neighbor> = listOf(
+    private val InMemory_NeighborS: MutableList<Neighbor> = mutableListOf(
         Neighbor(
             1, "Caroline",
             "https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk",

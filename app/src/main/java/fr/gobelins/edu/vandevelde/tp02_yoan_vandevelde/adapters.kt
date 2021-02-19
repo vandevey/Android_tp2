@@ -8,12 +8,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.databinding.NeighborItemBinding
+import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.fragments.CRUD
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.models.Neighbor
 
-class ListNeighborsAdapter(
-    items: List<Neighbor>
-) : RecyclerView.Adapter<ListNeighborsAdapter.ViewHolder>() {
-    private val mNeighbours: List<Neighbor> = items
+class ListNeighborsAdapter(items: MutableList<Neighbor>, eventHandler: CRUD<Neighbor>) : RecyclerView.Adapter<ListNeighborsAdapter.ViewHolder>() {
+    private val mNeighbours: MutableList<Neighbor> = items
+    private val eventHandler: CRUD<Neighbor> = eventHandler
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: NeighborItemBinding = NeighborItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -33,6 +34,10 @@ class ListNeighborsAdapter(
             .skipMemoryCache(false)
             .into(holder.binding.itemListAvatar)
 
+        holder.binding.itemListDeleteButton.setOnClickListener(View.OnClickListener {
+            eventHandler.onDeleteNeibor(mNeighbours[position])
+            notifyDataSetChanged()
+        })
     }
 
     override fun getItemCount(): Int {

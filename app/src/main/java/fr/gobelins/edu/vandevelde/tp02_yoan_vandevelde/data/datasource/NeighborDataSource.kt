@@ -5,9 +5,9 @@ import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.models.Neighbor
 interface NeighborDataSource {
     /**
      * Get all my Neighbors
-     * @return [List]
+     * @return [MutableList]
      */
-    val neighbors: List<Neighbor>
+    val neighbors: MutableList<Neighbor>
 
     /**
      * Deletes a neighbor

@@ -12,7 +12,7 @@ class NeighborRepository {
     }
 
     // Méthode qui retourne la liste des voisins
-    fun getNeighbours(): List<Neighbor> = dataSource.neighbors
+    fun getNeighbours(): MutableList<Neighbor> = dataSource.neighbors
 
     companion object {
         private var instance: NeighborRepository? = null
@@ -24,5 +24,9 @@ class NeighborRepository {
             }
             return instance!!
         }
+    }
+
+    fun delete(neighbor: Neighbor) {
+        dataSource.deleteNeighbor(neighbor)
     }
 }

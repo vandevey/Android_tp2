@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.ListNeighborsAdapter
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.data.NeighborRepository
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.databinding.ListNeighborsFragmentBinding
+import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.models.Neighbor
 
-class ListNeighborsFragment : Fragment(){
+class ListNeighborsFragment : Fragment(), CRUD<Neighbor>{
 
 
     // lateinit permet d'indiquer au compilateur que la variable sera initialisé plus tard -> Dans le onCreateView
@@ -37,7 +38,11 @@ class ListNeighborsFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val neighbors = NeighborRepository.getInstance().getNeighbours()
-        val adapter = ListNeighborsAdapter(neighbors)
+        val adapter = ListNeighborsAdapter(neighbors, this)
         binding.neighborsList.adapter = adapter
+    }
+
+    override fun onDeleteNeibor(model: Neighbor) {
+        NeighborRepository.getInstance().delete(model)
     }
 }
