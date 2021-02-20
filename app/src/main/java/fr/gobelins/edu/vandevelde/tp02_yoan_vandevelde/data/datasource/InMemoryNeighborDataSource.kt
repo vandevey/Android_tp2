@@ -15,7 +15,8 @@ class InMemoryNeighborDataSource : NeighborDataSource{
     }
 
     override fun createNeighbor(neighbor: Neighbor) {
-
+        println("create")
+        InMemory_NeighborS.add(neighbor)
     }
 
     override fun updateFavoriteStatus(neighbor: Neighbor) {

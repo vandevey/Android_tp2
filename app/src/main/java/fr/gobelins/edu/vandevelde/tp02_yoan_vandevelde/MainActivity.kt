@@ -2,27 +2,32 @@ package fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.databinding.ActivityMainBinding
 import fr.gobelins.edu.vandevelde.tp02_yoan_vandevelde.fragments.ListNeighborsFragment
 
-class MainActivity : AppCompatActivity() {
-
-
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : AppCompatActivity(), NavigationListener {
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        changeFragment(ListNeighborsFragment())
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        //toolbar = binding.toolbar
+        setSupportActionBar(binding.toolbar)
+        setContentView(binding.root)
+        showFragment(ListNeighborsFragment())
     }
 
-    private fun changeFragment(fragment: Fragment) {
+    override fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             addToBackStack(null)
         }.commit()
+    }
+
+    override fun updateTitle(title: Int) {
+        binding.toolbar.setTitle(title)
     }
 }
