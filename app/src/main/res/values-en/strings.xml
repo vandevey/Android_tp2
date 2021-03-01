@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TP02_Yoan_Vandevelde</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -11,8 +12,8 @@
     <string name="title_neighbor_add">Ajouter un voisin</string>
     <string name="title_neighbor_list">Liste des voisins</string>
 
-    <string name="validation_message">Ce champ est requis</string>
-    <string name="validation_phone">Saisisez un numero valide</string>
-    <string name="validation_web_url">Saisisez une url valide</string>
-    <string name="validation_max_char">30 caractères max</string>
+    <string name="validation_message">This field is requiere</string>
+    <string name="validation_phone">Enter a valid phone number</string>
+    <string name="validation_web_url">Enter a valide url</string>
+    <string name="validation_max_char">Max 30 characters</string>
 </resources>
